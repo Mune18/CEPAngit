@@ -2,6 +2,8 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -14,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,6 +34,7 @@ export class LoginComponent implements OnInit {
         (response) => {
           // Handle successful login here
           console.log('Login successful', response);
+          this.router.navigate(['/admin/home']);
         },
         (error) => {
           // Handle login error here

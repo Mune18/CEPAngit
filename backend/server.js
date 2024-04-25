@@ -37,13 +37,13 @@ app.post('/login', (req, res) => {
   db.query(query, [adminID, adminPass], (err, result) => {
     if (err) {
       console.error('Error executing MySQL query:', err);
-      res.status(500).send('Error checking credentials');
+      res.status(500).json({ message: 'Error checking credentials' });
       return;
     }
     if (result.length > 0) {
-      res.status(200).send('Login successful');
+      res.status(200).json({ message: 'Login successful'});
     } else {
-      res.status(401).send('Invalid credentials');
+      res.status(401).json({ message: 'Invalid credentials' });
     }
   });
 });
